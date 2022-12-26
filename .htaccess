@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L,QSA]
+Header set X-Frame-Options DENY
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^epigraph\.am$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.epigraph\.am$
+RewriteRule ^/?$ "https\:\/\/epigraph\.am\/" [R=301,L]
+
